@@ -1,13 +1,23 @@
 import React, { Component } from "react";
-import api from "../../services/api";
+import { MdInsertDriveFile } from "react-icons/md";
+import { distanceInWords } from "date-fns";
+import pt from "date-fns/locale/pt";
 
+import api from "../../services/api";
 import logo from "../../assets/logo.svg";
 import "./styles.css";
 
 export default class Main extends Component {
   state = {
-    newBox: ""
+    newBox: "",
+    boxes: []
   };
+
+  async componentDidMount() {
+    const response = await api.get("box/show/");
+
+    this.setState({ boxes: response.data });
+  }
 
   handleSubmit = async event => {
     event.preventDefault();
@@ -41,6 +51,29 @@ export default class Main extends Component {
           />
           <button type="submit">Criar</button>
         </form>
+
+        <ul>
+          {this.state.boxes &&
+            this.state.boxes.map(box => (
+              <li key={box._id}>
+                <a
+                  className="fileInfo"
+                  href={`/box/show/${box._id}`}
+                  target="_blank"
+                >
+                  <MdInsertDriveFile size={24} color="#A5Cfff" />
+                  <strong>{box.title}</strong>
+                </a>
+
+                <span>
+                  {box.files.length} arquivos - há{" "}
+                  {distanceInWords(box.createdAt, new Date(), {
+                    locale: pt
+                  })}
+                </span>
+              </li>
+            ))}
+        </ul>
       </div>
     );
   }

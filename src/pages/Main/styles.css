@@ -1,9 +1,11 @@
 #main-container {
   height: 100%;
+  max-height: 100%;
 
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 #main-container form {
@@ -51,4 +53,40 @@
   font-size: 25px;
   font-weight: bold;
   color: #007ee5;
+}
+
+#main-container ul {
+  width: 500px;
+  margin: 30px 0;
+  list-style: none;
+}
+
+#main-container ul li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#main-container ul li + li {
+  padding-top: 20px;
+  margin-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+#main-container ul li .fileInfo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+#main-container ul li .fileInfo strong {
+  font-weight: normal;
+  font-size: 14px;
+  margin-left: 10px;
+  color: #333;
+}
+
+#main-container ul li span {
+  color: #999;
+  font-size: 13px;
 }
