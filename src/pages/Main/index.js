@@ -1,5 +1,18 @@
 import React, { Component } from "react";
-import { MdInsertDriveFile } from "react-icons/md";
+import {
+  MdFilter1,
+  MdFilter2,
+  MdFilter3,
+  MdFilter4,
+  MdFilter5,
+  MdFilter6,
+  MdFilter7,
+  MdFilter8,
+  MdFilter9,
+  MdFilter9Plus,
+  MdAddToPhotos,
+  MdAdd
+} from "react-icons/md";
 import { distanceInWords } from "date-fns";
 import pt from "date-fns/locale/pt";
 
@@ -13,9 +26,22 @@ export default class Main extends Component {
     boxes: []
   };
 
-  async componentDidMount() {
-    const response = await api.get("box/show/");
+  buttonIcons = [
+    MdAddToPhotos,
+    MdFilter1,
+    MdFilter2,
+    MdFilter3,
+    MdFilter4,
+    MdFilter5,
+    MdFilter6,
+    MdFilter7,
+    MdFilter8,
+    MdFilter9,
+    MdFilter9Plus
+  ];
 
+  async componentDidMount() {
+    const response = await api.get("boxes/");
     this.setState({ boxes: response.data });
   }
 
@@ -33,6 +59,13 @@ export default class Main extends Component {
     this.setState({
       newBox: event.target.value
     });
+  };
+
+  handleClick = event => {
+    //event.preventDefault();
+    const boxId = event.target.id;
+
+    this.props.history.push(`/box/${boxId}`);
   };
 
   render() {
@@ -58,15 +91,19 @@ export default class Main extends Component {
               <li key={box._id}>
                 <a
                   className="fileInfo"
-                  href={`/box/show/${box._id}`}
+                  href={`/box/${box._id}`}
                   target="_blank"
                 >
-                  <MdInsertDriveFile size={24} color="#A5Cfff" />
+                  {React.createElement(this.buttonIcons[box.files.length], {
+                    size: 24,
+                    color: "#A5Cfff",
+                    id: box._id
+                  })}
                   <strong>{box.title}</strong>
                 </a>
 
                 <span>
-                  {box.files.length} arquivos - há{" "}
+                  há{" "}
                   {distanceInWords(box.createdAt, new Date(), {
                     locale: pt
                   })}

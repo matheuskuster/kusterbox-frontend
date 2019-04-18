@@ -18,6 +18,7 @@ export default class Box extends Component {
     this.subscribeToNewFiles();
 
     const box = this.props.match.params.id;
+    console.log(box);
     const response = await api.get(`box/show/${box}`);
 
     this.setState({ box: response.data });
