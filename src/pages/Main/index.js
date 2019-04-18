@@ -96,12 +96,12 @@ export default class Main extends Component {
                   {(box.files.length <= 10 &&
                     React.createElement(this.buttonIcons[box.files.length], {
                       size: 24,
-                      color: "#A5Cfff",
+                      color: "#007ee5",
                       id: box._id
                     })) ||
                     React.createElement(this.buttonIcons[10], {
                       size: 24,
-                      color: "#A5Cfff",
+                      color: "#007ee5",
                       id: box._id
                     })}
                   <strong>{box.title}</strong>
