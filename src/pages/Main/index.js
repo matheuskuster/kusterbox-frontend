@@ -10,8 +10,7 @@ import {
   MdFilter8,
   MdFilter9,
   MdFilter9Plus,
-  MdAddToPhotos,
-  MdAdd
+  MdAddToPhotos
 } from "react-icons/md";
 import { distanceInWords } from "date-fns";
 import pt from "date-fns/locale/pt";
