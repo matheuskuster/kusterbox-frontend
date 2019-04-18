@@ -57,6 +57,7 @@
 
 #main-container ul {
   width: 500px;
+  max-width: 80%;
   margin: 30px 0;
   list-style: none;
 }

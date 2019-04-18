@@ -93,11 +93,17 @@ export default class Main extends Component {
                   href={`/box/${box._id}`}
                   target="_blank"
                 >
-                  {React.createElement(this.buttonIcons[box.files.length], {
-                    size: 24,
-                    color: "#A5Cfff",
-                    id: box._id
-                  })}
+                  {(box.files.length <= 10 &&
+                    React.createElement(this.buttonIcons[box.files.length], {
+                      size: 24,
+                      color: "#A5Cfff",
+                      id: box._id
+                    })) ||
+                    React.createElement(this.buttonIcons[10], {
+                      size: 24,
+                      color: "#A5Cfff",
+                      id: box._id
+                    })}
                   <strong>{box.title}</strong>
                 </a>
 
